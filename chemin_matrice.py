@@ -55,7 +55,7 @@ def trouver_chemin(matrice):
     
     dict_chemin.update({"1": point_depart})
     
-    prochain_point = max((matrice[index_ligne -1 if (index_ligne - 1) >= 0 else 0][index_colonne]), matrice[index_colonne - 1 if (index_colonne - 1) >= 0 else 0][index_ligne], matrice[index_ligne + 1 if (index_ligne + 1) <= (len(matrice)-1) else 0][index_colonne], matrice[index_colonne + 1 if (index_colonne + 1) <= (len(matrice[0])-1) else 0][index_ligne]) 
+    prochain_point = max((matrice[index_ligne -1 if (index_ligne - 1) >= 0 else 0][index_colonne]), matrice[index_ligne][index_colonne - 1 if (index_colonne - 1) >= 0 else 0], matrice[index_ligne + 1 if (index_ligne + 1) <= (len(matrice)- 1) else 0][index_colonne], matrice[index_ligne][index_colonne + 1 if (index_colonne + 1) <= (len(matrice[0])-1) else 0]) 
     if prochain_point:
         dict_chemin.update({"2": prochain_point})
     
@@ -65,7 +65,6 @@ def trouver_chemin(matrice):
     print(dict_chemin)
     print(prochain_point)
     print(position_depart)
-    
 
 
 matrice = creation_matrice()
