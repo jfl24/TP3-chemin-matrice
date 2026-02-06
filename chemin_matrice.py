@@ -46,20 +46,32 @@ def afficher_matrice(matrice):
 def trouver_chemin(matrice):
     dict_chemin = {}
 
-    liste_max = []
-    for ligne in matrice:
-        liste_max.append(max(ligne)) 
-    point_depart = max(liste_max)
-    # igne_depart = 
+    point_depart = matrice[0][0]
+    for index_ligne, ligne in enumerate(matrice):
+        for index_colonne, element in enumerate(ligne):
+            if element > point_depart:
+                point_depart = element
+                position_depart = (index_ligne, index_colonne)
+    
     dict_chemin.update({"1": point_depart})
-    deuxieme_point = max(liste_max.pop(point_depart), )
+    
+    prochain_point = max((matrice[index_ligne -1 if (index_ligne - 1) >= 0 else 0][index_colonne]), matrice[index_colonne - 1 if (index_colonne - 1) >= 0 else 0][index_ligne], matrice[index_ligne + 1 if (index_ligne + 1) <= (len(matrice)-1) else 0][index_colonne], matrice[index_colonne + 1 if (index_colonne + 1) <= (len(matrice[0])-1) else 0][index_ligne]) 
+    if prochain_point:
+        dict_chemin.update({"2": prochain_point})
+    
+    # Voir comment trouver les positions des point adjacents au premier point
+    
+
     print(dict_chemin)
+    print(prochain_point)
+    print(position_depart)
+    
 
 
 matrice = creation_matrice()
 afficher_matrice(matrice)
 trouver_chemin(matrice)
 
-ligne.index(point_depart), matrice
+
 
 
