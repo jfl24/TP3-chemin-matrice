@@ -152,14 +152,21 @@ def chemin_matrice():
                 position = position_prochain_point
             else:
                 break
+
+    def afficher_resultat():
+        liste_affichage = []
+        for cle in dict_chemin.keys():
+            liste_affichage.append(cle)
+        suite =  " -> ".join(str(n) for n in liste_affichage)
+        print("\nVoici le chemin le plus long dans la matrice : ")
+        print(f"{suite}")
             
-        
-                
         
     creation_matrice()
     afficher_matrice()
     suite_points()
     print(dict_chemin)
+    afficher_resultat()
     
 
 chemin_matrice()
