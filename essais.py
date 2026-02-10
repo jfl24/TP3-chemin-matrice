@@ -44,21 +44,7 @@ def chemin_matrice():
         print("==== VOICI LA MATRICE ====\n")
         for ligne in matrice:
             print("".join(f"{colonne:4}" for colonne in ligne))
-
-    def trouver_depart():
-
-        point_depart = matrice[0][0]
-        position_depart = (0, 0)
-        for index_ligne, ligne in enumerate(matrice):
-            for index_colonne, element in enumerate(ligne):
-                if element > point_depart:
-                    point_depart = element
-                    position_depart = (index_ligne, index_colonne)
-                
-        
-        dict_chemin.update({point_depart: position_depart})
-        return dict_chemin
-        
+    
     
     def suite_points():
         
