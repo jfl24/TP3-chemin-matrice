@@ -1,9 +1,9 @@
 import random
 def chemin_matrice():
     print("====== RECHERCHE DU CHEMIN LE PLUS LONG DANS UNE MATRICE ======")
-    dict_chemin = {}
+    
     matrice = []
-
+    
     def creation_matrice():
         while True:
             try:
@@ -48,11 +48,11 @@ def chemin_matrice():
     
         
     
-    def suite_points():
+    def suite_points(point_depart, position_depart):
+    
+        dict_chemin = {}
         
         def trouver_depart():
-            point_depart = matrice[i][j]
-            position_depart = (index1, index2)
             dict_chemin.update({point_depart: position_depart})
             
     
@@ -134,26 +134,32 @@ def chemin_matrice():
                 position = position_prochain_point
             else:
                 break
-    liste_chemins = []
-    for index1, i in enumerate(matrice):
-        for index2, j in enumerate(i):
-            suite_points()
-            liste_chemins.append(dict_chemin)
-    print(liste_chemins)
-    dict_max = max(liste_chemins, key=len)
+        print(dict_chemin)
+        return dict_chemin
+        
 
     def afficher_resultat():
         liste_affichage = []
-        for cle in dict_max.keys():
+        for cle in dict_gagnant.keys():
             liste_affichage.append(cle)
         suite =  " -> ".join(str(n) for n in liste_affichage)
         print("\nVoici le chemin le plus long dans la matrice : ")
-        print(f"{suite}")
-            
-        
+        print(f"{suite}")         
+           
     creation_matrice()
     afficher_matrice()
+    liste_chemins = []
+    for index1, i in enumerate(matrice):
+        for index2, j in enumerate(i):
+            dict_result = suite_points(j, (index1, index2))
+            liste_chemins.append(dict_result)
+    dict_gagnant = liste_chemins[0]
+    for chemin in liste_chemins:
+        if len(chemin) > len(dict_gagnant):
+            dict_gagnant = chemin
+            
     afficher_resultat()
+    
     
 
 chemin_matrice()
