@@ -1,13 +1,12 @@
 import random
 def chemin_matrice():
-    print("====== RECHERCHE DU CHEMIN LE PLUS LONG DANS UNE MATRICE ======")
     
     matrice = []
-    
+        
     def creation_matrice():
         while True:
             try:
-                hauteur = int(input("Combien de lignes voulez-vous dans la matrice ? : "))
+                hauteur = int(input("\nCombien de lignes voulez-vous dans votre matrice ? : "))
                 if 0 < hauteur <= 7:
                     break
                 print("Erreur.  Veuillez entrer un chiffre entre 1 et 7.")
@@ -16,7 +15,7 @@ def chemin_matrice():
 
         while True:
             try:
-                largeur = int(input("Combien de colonnes voulez-vous dans la matrice ? : "))
+                largeur = int(input("Combien de colonnes voulez-vous dans votre matrice ? : "))
                 if 0 < largeur <= 7:
                     break
                 print("Erreur.  Veuillez entrer un chiffre entre 1 et 7.")
@@ -25,7 +24,7 @@ def chemin_matrice():
 
         while True:
             try:
-                valeur_max = int(input("Quelle est la valeur maximale des éléments de la matrice : "))
+                valeur_max = int(input("Quelle est la valeur maximale des éléments de votre matrice : "))
                 if valeur_max > 0:
                     break
                 print("Erreur.  Veuillez entrer un chiffre supérieur à 1.")
@@ -39,23 +38,20 @@ def chemin_matrice():
             ligne.extend(random.randint(1, valeur_max) for j in range(largeur))
     
     
-
     def afficher_matrice():
-        print("==== VOICI LA MATRICE ====\n")
+        print("\n==== VOICI LA MATRICE ====\n")
         for ligne in matrice:
             print("".join(f"{colonne:4}" for colonne in ligne))
 
-    
-        
     
     def suite_points(point_depart, position_depart):
     
         dict_chemin = {}
         
+        
         def trouver_depart():
             dict_chemin.update({point_depart: position_depart})
             
-    
         trouver_depart()
         point = list(dict_chemin.keys())[-1]
         position = list(dict_chemin.values())[-1]
@@ -100,7 +96,7 @@ def chemin_matrice():
 
             for index_ligne, ligne in enumerate(matrice):
                 for index_colonne, element in enumerate(ligne):
-                    if position[1] < len(matrice) - 1:
+                    if position[1] < len(ligne) - 1:
                         voisin_droite = matrice[position[0]][position[1] + 1]
                         position_voisin_droite = (position[0], position[1] + 1)
                         break
@@ -144,22 +140,48 @@ def chemin_matrice():
             liste_affichage.append(cle)
         suite =  " -> ".join(str(n) for n in liste_affichage)
         print("\nVoici le chemin le plus long dans la matrice : ")
-        print(f"{suite}")         
-           
-    creation_matrice()
-    afficher_matrice()
-    liste_chemins = []
-    for index1, i in enumerate(matrice):
-        for index2, j in enumerate(i):
-            dict_result = suite_points(j, (index1, index2))
-            liste_chemins.append(dict_result)
-    dict_gagnant = liste_chemins[0]
-    for chemin in liste_chemins:
-        if len(chemin) > len(dict_gagnant):
-            dict_gagnant = chemin
+        if len(liste_affichage) == 1:
+            print("Pas de déplacement possible.")
+        else:
+            print(f"{suite}")
+            print(f"Longueur : {len(liste_affichage)}")
+        for ligne in matrice:
+            ligne.clear()
+        matrice.clear()   
             
-    afficher_resultat()
+        
+    # Boucle principale
+    liste_chemins = []
+    while True:
     
-    
+        print("\n====== RECHERCHE DU CHEMIN LE PLUS LONG DANS UNE MATRICE ======")
+        # try:
+        choix = input("\nVoulez-vous essayez une matrice personnalisée? (o/n)? : ")
+        
+        if choix.lower() == "n":
+            print("Merci d'avoir essayé le chemin le plus long.  Au revoir.")
+            break
+        
+        print("\n== Exemple de chemin dans une matrice ==")
+        matrice_exemple = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        for ligne in matrice_exemple:
+            print("".join(f"{colonne:4}" for colonne in ligne))
+        print("\nChemin le plus long : 9 -> 8 -> 7 -> 4 -> 1")
+        print("Longueur : 5")
+        creation_matrice()
+        afficher_matrice()
+        for index1, i in enumerate(matrice):
+            for index2, j in enumerate(i):
+                dict_result = suite_points(j, (index1, index2))
+                liste_chemins.append(dict_result)
+        dict_gagnant = liste_chemins[0]
+        for chemin in liste_chemins:
+            if len(chemin) > len(dict_gagnant):
+                dict_gagnant = chemin
+        afficher_resultat()
 
-chemin_matrice()
+        # except Exception as e:
+        #     print(f"\nErreur inattendue : {e}")
+
+if __name__ == "__main__":    
+    chemin_matrice()
