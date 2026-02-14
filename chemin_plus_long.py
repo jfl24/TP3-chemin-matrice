@@ -41,7 +41,7 @@ def chemin_matrice():
     
     # Une fontion pour afficher la matrice de façon bien lisible
     def afficher_matrice():
-        print("\n==== VOICI LA MATRICE ====\n")
+        print(f"\n==== VOICI LA MATRICE {len(matrice)} X {len(matrice[0])} CRÉÉE ====\n")
         for ligne in matrice:
             print("".join(f"{colonne:4}" for colonne in ligne))
 
