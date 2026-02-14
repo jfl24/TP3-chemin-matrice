@@ -1,8 +1,10 @@
 import random
+
 def chemin_matrice():
     
     matrice = []
-        
+    
+    # Une fontion pour créer la matrice selon les paramètres de l'utilisateur, tout en gérant les erreurs d'entrées
     def creation_matrice():
         while True:
             try:
@@ -37,17 +39,16 @@ def chemin_matrice():
         for ligne in matrice:
             ligne.extend(random.randint(1, valeur_max) for j in range(largeur))
     
-    
+    # Une fontion pour afficher la matrice de façon bien lisible
     def afficher_matrice():
         print("\n==== VOICI LA MATRICE ====\n")
         for ligne in matrice:
             print("".join(f"{colonne:4}" for colonne in ligne))
 
-    
+    # Une fonction pour chercher le chemin le plus long qu'on appliquera à tous les points de la matrice
     def suite_points(point_depart, position_depart):
     
         dict_chemin = {}
-        
         
         def trouver_depart():
             dict_chemin.update({point_depart: position_depart})
@@ -130,10 +131,10 @@ def chemin_matrice():
                 position = position_prochain_point
             else:
                 break
-            
+
         return dict_chemin
         
-
+    # Une fonction pour afficher le résultat du chemin le plus long
     def afficher_resultat():
         liste_affichage = []
         for cle in dict_gagnant.keys():
@@ -146,6 +147,7 @@ def chemin_matrice():
             print(f"{suite}")
             print(f"Longueur : {len(liste_affichage)}")
         
+        # On rajoute des statistiques sur la matrice
         minimum = matrice[0][0]
         for ligne in matrice:
             for chiffre in ligne:
@@ -160,17 +162,17 @@ def chemin_matrice():
         for ligne in matrice:
             for chiffre in ligne:
                 somme_chiffres_matrice += chiffre
-        print(somme_chiffres_matrice)
         nombre_chiffres_matrice = 0
         for ligne in matrice:
             for chiffre in ligne:
                 nombre_chiffres_matrice += 1
-        print(nombre_chiffres_matrice)
         print("\n ==== STATISTIQUES INTÉRESSANTES SUR LA MATRICE ====")
         print(f"Minimum de la matrice : {minimum}")
         print(f"Maximum de la matrice : {maximum}")
         print(f"Moyenne des valeurs de la matrice : {somme_chiffres_matrice/nombre_chiffres_matrice:.2f}\n")
 
+
+        # On vide la matrice avant de recommencer le processus
         for ligne in matrice:
             ligne.clear()
         matrice.clear()
@@ -194,8 +196,10 @@ def chemin_matrice():
                 print("".join(f"{colonne:4}" for colonne in ligne))
             print("\nChemin le plus long : 9 -> 8 -> 7 -> 4 -> 1")
             print("Longueur : 5")
+
             creation_matrice()
             afficher_matrice()
+
             for index1, i in enumerate(matrice):
                 for index2, j in enumerate(i):
                     dict_result = suite_points(j, (index1, index2))
@@ -204,6 +208,7 @@ def chemin_matrice():
             for chemin in liste_chemins:
                 if len(chemin) > len(dict_gagnant):
                     dict_gagnant = chemin
+                    
             afficher_resultat()
             liste_chemins.clear()
 
