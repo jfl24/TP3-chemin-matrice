@@ -131,7 +131,6 @@ def chemin_matrice():
                 position = position_prochain_point
             else:
                 break
-
         return dict_chemin
         
     # Une fonction pour afficher le résultat du chemin le plus long
