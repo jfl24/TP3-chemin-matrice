@@ -145,6 +145,32 @@ def chemin_matrice():
         else:
             print(f"{suite}")
             print(f"Longueur : {len(liste_affichage)}")
+        
+        minimum = matrice[0][0]
+        for ligne in matrice:
+            for chiffre in ligne:
+                if chiffre < minimum:
+                    minimum = chiffre
+        maximum = matrice[0][0]
+        for ligne in matrice:
+            for chiffre in ligne:
+                if chiffre > maximum:
+                    maximum = chiffre
+        somme_chiffres_matrice = 0
+        for ligne in matrice:
+            for chiffre in ligne:
+                somme_chiffres_matrice += chiffre
+        print(somme_chiffres_matrice)
+        nombre_chiffres_matrice = 0
+        for ligne in matrice:
+            for chiffre in ligne:
+                nombre_chiffres_matrice += 1
+        print(nombre_chiffres_matrice)
+        print("\n ==== STATISTIQUES INTÉRESSANTES SUR LA MATRICE ====")
+        print(f"Minimum de la matrice : {minimum}")
+        print(f"Maximum de la matrice : {maximum}")
+        print(f"Moyenne des valeurs de la matrice : {somme_chiffres_matrice/nombre_chiffres_matrice:.2f}\n")
+
         for ligne in matrice:
             ligne.clear()
         matrice.clear()
