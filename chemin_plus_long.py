@@ -194,7 +194,7 @@ def chemin_matrice():
             matrice_exemple = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
             for ligne in matrice_exemple:
                 print("".join(f"{colonne:4}" for colonne in ligne))
-            print("\nChemin le plus long : 9 -> 8 -> 7 -> 4 -> 1")
+            print("\nChemin le plus long dans l'exemple : 9 -> 8 -> 7 -> 4 -> 1")
             print("Longueur : 5")
 
             creation_matrice()
@@ -208,7 +208,7 @@ def chemin_matrice():
             for chemin in liste_chemins:
                 if len(chemin) > len(dict_gagnant):
                     dict_gagnant = chemin
-                    
+
             afficher_resultat()
             liste_chemins.clear()
 
